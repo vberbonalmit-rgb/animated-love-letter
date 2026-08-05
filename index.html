@@ -1,45 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Animated Love Letter</title>
-<link rel="stylesheet" href="style.css">
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Animated Love Letter</title>
+
+    <link rel="stylesheet" href="style.css">
+
 </head>
+
 <body>
 
-<div class="hearts"></div>
+    <!-- Floating Hearts -->
+    <div id="hearts"></div>
 
-<div class="card" id="card">
+    <!-- Main Container -->
+    <main class="container">
 
-    <div class="envelope">
-        <div class="top"></div>
-        <div class="letter">
+        <!-- Envelope Card -->
+        <div class="card" id="card">
 
-            <h2>❤️ My Love ❤️</h2>
+            <!-- Envelope -->
+            <div class="envelope">
 
-            <p>
-                Every moment with you feels like the most beautiful dream.
-                Your smile brightens my darkest days, and your love fills my
-                heart with happiness.
-            </p>
+                <!-- Top Flap -->
+                <div class="flap" id="flap"></div>
 
-            <p>
-                Thank you for being my inspiration, my happiness, and my
-                forever favorite person.
-            </p>
+                <!-- Envelope Body -->
+                <div class="body"></div>
 
-            <h3>I Love You Forever ❤️</h3>
+                <!-- Letter -->
+                <div class="letter" id="letter">
+
+                    <div class="paper">
+
+                        <h1>❤️ My Love ❤️</h1>
+
+                        <p>
+                            Every moment with you feels like the most beautiful
+                            dream. Your smile brightens my darkest days and
+                            your love fills my heart with happiness.
+                        </p>
+
+                        <p>
+                            Thank you for being my inspiration,
+                            my happiness,
+                            my best friend,
+                            and my forever.
+                        </p>
+
+                        <p>
+                            Every day with you becomes another beautiful memory
+                            that I will treasure forever.
+                        </p>
+
+                        <p>
+                            I promise to stand beside you,
+                            support you,
+                            laugh with you,
+                            and love you through every chapter of life.
+                        </p>
+
+                        <h2>Forever Yours ❤️</h2>
+
+                    </div>
+
+                </div>
+
+            </div>
 
         </div>
 
-    </div>
+        <!-- Button -->
 
-    <p class="click">💌 Click the Envelope 💌</p>
+        <button id="openBtn">
 
-</div>
+            💌 Open My Letter 💌
 
-<script src="script.js"></script>
+        </button>
+
+    </main>
+
+    <script src="script.js"></script>
 
 </body>
+
 </html>
