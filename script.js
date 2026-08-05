@@ -53,7 +53,11 @@ function openLetter(){
 
         button.innerHTML="💖 Close Letter 💖";
 
-        opened=true;
+        heartBurst();
+
+        startTyping();
+
+        opened = true;
 
         busy=false;
 
@@ -66,6 +70,15 @@ function openLetter(){
 ========================================== */
 
 function closeLetter(){
+   lines.forEach(line=>{
+
+    line.style.opacity = 0;
+
+    line.textContent = line.dataset.text;
+
+});
+
+signature.style.opacity = 0;
 
     busy=true;
 
@@ -236,6 +249,57 @@ function heartBurst(){
         setTimeout(()=>{
 
             h.remove();
+
+           /* ==========================================
+   PART 6
+   TYPEWRITER EFFECT
+========================================== */
+
+const lines = document.querySelectorAll(".type");
+const signature = document.querySelector(".signature");
+
+async function startTyping(){
+
+    signature.style.opacity = 0;
+
+    for(const line of lines){
+
+        const text = line.dataset.text || line.textContent;
+
+        line.dataset.text = text;
+
+        line.textContent = "";
+
+        line.style.opacity = 1;
+
+        const cursor = document.createElement("span");
+        cursor.className = "cursor";
+
+        line.appendChild(cursor);
+
+        for(let i = 0; i < text.length; i++){
+
+            line.childNodes[0]
+                ? line.childNodes[0].remove()
+                : null;
+
+            line.textContent = text.substring(0,i+1);
+
+            line.appendChild(cursor);
+
+            await new Promise(resolve=>setTimeout(resolve,35));
+
+        }
+
+        cursor.remove();
+
+        await new Promise(resolve=>setTimeout(resolve,250));
+
+    }
+
+    signature.style.opacity = 1;
+
+}
 
         },900);
 
