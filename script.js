@@ -1,65 +1,63 @@
-/* ==========================================
-   ELEMENTS
-========================================== */
+/* ==========================================================
+   PART 4
+   DYNAMIC LETTER ANIMATION
+========================================================== */
 
-const card = document.getElementById("card");
-const button = document.getElementById("openBtn");
+const loveCard = document.getElementById("loveCard");
 const letter = document.getElementById("letter");
-const flap = document.getElementById("flap");
-const hearts = document.getElementById("hearts");
+const paper = letter.querySelector(".paper");
+const button = document.getElementById("toggleBtn");
 
 let opened = false;
-let animating = false;
+let busy = false;
 
 /* ==========================================
    OPEN / CLOSE
 ========================================== */
 
-function toggleLetter() {
+function toggleLetter(){
 
-    if (animating) return;
+    if(busy) return;
 
-    animating = true;
-
-    if (!opened) {
-
-        openLetter();
-
-    } else {
-
-        closeLetter();
-
-    }
+    opened ? closeLetter() : openLetter();
 
 }
 
-card.addEventListener("click", toggleLetter);
-button.addEventListener("click", toggleLetter);
+button.addEventListener("click",toggleLetter);
+loveCard.addEventListener("click",toggleLetter);
 
 /* ==========================================
    OPEN
 ========================================== */
 
-function openLetter() {
+function openLetter(){
 
-    const paper = letter.querySelector(".paper");
+    busy = true;
 
-    // Actual paper height
-    const paperHeight = paper.offsetHeight;
+    // Wait for flap animation
+    loveCard.classList.add("open");
 
-    // Move letter based on its own height
-    const moveUp = paperHeight * 0.55;
+    setTimeout(()=>{
 
-    letter.style.transform =
-        `translateY(-${moveUp}px)`;
+        // Get actual paper height
+        const paperHeight = paper.offsetHeight;
 
-    card.classList.add("open");
+        // Amount of paper remaining inside envelope
+        const visibleInside = 140;
 
-    button.innerHTML = "💖 Close Letter 💖";
+        // Calculate movement
+        const moveUp = paperHeight - visibleInside;
 
-    opened = true;
+        letter.style.transform =
+            `translateX(-50%) translateY(-${moveUp}px)`;
 
-    animating = false;
+        button.innerHTML="💖 Close Letter 💖";
+
+        opened=true;
+
+        busy=false;
+
+    },350);
 
 }
 
@@ -67,98 +65,53 @@ function openLetter() {
    CLOSE
 ========================================== */
 
-function closeLetter() {
+function closeLetter(){
+
+    busy=true;
 
     letter.style.transform =
-        "translateY(110px)";
+        "translateX(-50%) translateY(140px)";
 
-    card.classList.remove("open");
+    setTimeout(()=>{
 
-    button.innerHTML =
-        "💌 Open My Letter 💌";
+        loveCard.classList.remove("open");
 
-    opened = false;
+        button.innerHTML="💌 Open Letter 💌";
 
-    setTimeout(() => {
+        opened=false;
 
-        animating = false;
+        busy=false;
 
-    }, 700);
+    },450);
 
 }
 
 /* ==========================================
-   UPDATE ON RESIZE
+   WINDOW RESIZE
 ========================================== */
 
-window.addEventListener("resize", () => {
+window.addEventListener("resize",()=>{
 
-    if (!opened) return;
+    if(!opened) return;
 
-    const paper = letter.querySelector(".paper");
+    const paperHeight = paper.offsetHeight;
 
-    const moveUp = paper.offsetHeight * 0.55;
+    const visibleInside = 140;
+
+    const moveUp = paperHeight - visibleInside;
 
     letter.style.transform =
-        `translateY(-${moveUp}px)`;
+        `translateX(-50%) translateY(-${moveUp}px)`;
 
 });
 
 /* ==========================================
-   FLOATING HEARTS
+   INITIAL POSITION
 ========================================== */
 
-function createHeart() {
+window.addEventListener("load",()=>{
 
-    const heart = document.createElement("div");
-
-    heart.className = "heart";
-
-    heart.innerHTML = "❤";
-
-    heart.style.left = Math.random() * 100 + "%";
-
-    heart.style.fontSize =
-        (16 + Math.random() * 28) + "px";
-
-    heart.style.animationDuration =
-        (5 + Math.random() * 5) + "s";
-
-    hearts.appendChild(heart);
-
-    setTimeout(() => {
-
-        heart.remove();
-
-    }, 10000);
-
-}
-
-setInterval(createHeart, 350);
-
-/* ==========================================
-   OPTIONAL: PRESS SPACE TO OPEN/CLOSE
-========================================== */
-
-document.addEventListener("keydown", (e) => {
-
-    if (e.code === "Space") {
-
-        e.preventDefault();
-
-        toggleLetter();
-
-    }
+    letter.style.transform =
+        "translateX(-50%) translateY(140px)";
 
 });
-
-/* ==========================================
-   OPTIONAL: OPEN AFTER 1 SECOND
-========================================== */
-
-// Uncomment if you want the envelope to
-// automatically open after loading.
-//
-// window.onload = () => {
-//     setTimeout(openLetter,1000);
-// };
