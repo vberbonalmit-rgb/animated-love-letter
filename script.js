@@ -115,3 +115,130 @@ window.addEventListener("load",()=>{
         "translateX(-50%) translateY(140px)";
 
 });
+/* ==========================================================
+   PART 5
+   FLOATING HEARTS
+========================================================== */
+
+const heartsContainer =
+document.getElementById("hearts");
+
+const sparkleContainer =
+document.getElementById("sparkles");
+
+/* ===============================
+   FLOATING HEARTS
+=============================== */
+
+function createHeart(){
+
+    const heart =
+    document.createElement("div");
+
+    heart.className="heart";
+
+    heart.innerHTML="❤";
+
+    heart.style.left=
+        Math.random()*100+"%";
+
+    heart.style.fontSize=
+        (18+Math.random()*28)+"px";
+
+    heart.style.animationDuration=
+        (6+Math.random()*5)+"s";
+
+    heartsContainer.appendChild(heart);
+
+    setTimeout(()=>{
+
+        heart.remove();
+
+    },11000);
+
+}
+
+setInterval(createHeart,350);
+
+/* ===============================
+   SPARKLES
+=============================== */
+
+function createSparkle(){
+
+    const s=
+    document.createElement("div");
+
+    s.className="sparkle";
+
+    s.style.left=
+        Math.random()*100+"%";
+
+    s.style.top=
+        Math.random()*100+"%";
+
+    sparkleContainer.appendChild(s);
+
+    setTimeout(()=>{
+
+        s.remove();
+
+    },2000);
+
+}
+
+setInterval(createSparkle,180);
+
+/* ===============================
+   HEART BURST
+=============================== */
+
+function heartBurst(){
+
+    const rect=
+    loveCard.getBoundingClientRect();
+
+    for(let i=0;i<18;i++){
+
+        const h=
+        document.createElement("div");
+
+        h.className="burst-heart";
+
+        h.innerHTML="❤";
+
+        h.style.left=
+            rect.width/2+"px";
+
+        h.style.top=
+            rect.height/2+"px";
+
+        const angle=
+            Math.random()*360;
+
+        const distance=
+            70+Math.random()*90;
+
+        const x=
+            Math.cos(angle*Math.PI/180)
+            *distance;
+
+        const y=
+            Math.sin(angle*Math.PI/180)
+            *distance;
+
+        h.style.setProperty("--x",x+"px");
+
+        h.style.setProperty("--y",y+"px");
+
+        loveCard.appendChild(h);
+
+        setTimeout(()=>{
+
+            h.remove();
+
+        },900);
+
+    }
+
+}
