@@ -1,213 +1,89 @@
-/* ============================
-   RESET
-============================ */
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-body{
-
-    font-family:'Poppins',sans-serif;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    min-height:100vh;
-
-    overflow:hidden;
-
-    background:linear-gradient(135deg,#ff9a9e,#fad0c4,#fbc2eb,#a18cd1);
-
-}
-
-/* ============================
-   WRAPPER
-============================ */
-
-.wrapper{
-
-    width:100%;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:30px;
-
-}
-
-/* ============================
-   BACKGROUND HEARTS
-============================ */
-
-.background-hearts{
-
-    position:fixed;
-    inset:0;
-    overflow:hidden;
-    pointer-events:none;
-
-}
-
-.background-hearts span{
-
-    position:absolute;
-
-    width:18px;
-    height:18px;
-
-    background:#ff4d6d;
-
-    transform:rotate(45deg);
-
-    animation:float 12s linear infinite;
-
-    opacity:.45;
-
-}
-
-.background-hearts span::before,
-.background-hearts span::after{
-
-    content:"";
-
-    position:absolute;
-
-    width:18px;
-    height:18px;
-
-    background:#ff4d6d;
-
-    border-radius:50%;
-
-}
-
-.background-hearts span::before{
-
-    left:-9px;
-
-}
-
-.background-hearts span::after{
-
-    top:-9px;
-
-}
-
-.background-hearts span:nth-child(1){left:5%;animation-delay:0s;}
-.background-hearts span:nth-child(2){left:15%;animation-delay:2s;}
-.background-hearts span:nth-child(3){left:25%;animation-delay:5s;}
-.background-hearts span:nth-child(4){left:35%;animation-delay:1s;}
-.background-hearts span:nth-child(5){left:45%;animation-delay:7s;}
-.background-hearts span:nth-child(6){left:60%;animation-delay:3s;}
-.background-hearts span:nth-child(7){left:72%;animation-delay:6s;}
-.background-hearts span:nth-child(8){left:82%;animation-delay:4s;}
-.background-hearts span:nth-child(9){left:90%;animation-delay:8s;}
-.background-hearts span:nth-child(10){left:97%;animation-delay:2s;}
-
-@keyframes float{
-
-0%{
-
-    transform:translateY(100vh) rotate(45deg);
-    opacity:.5;
-
-}
-
-100%{
-
-    transform:translateY(-120vh) rotate(405deg);
-    opacity:0;
-
-}
-
-}
-
-/* ============================
-   HIDE CHECKBOX
-============================ */
-
-#open{
-
-    display:none;
-
-}
-
-/* ============================
+/* =====================================
    CARD
-============================ */
+===================================== */
 
 .card{
-
     position:relative;
-
-    width:min(430px,92vw);
-
-    height:320px;
+    width:min(460px,92vw);
+    min-height:360px;
 
     display:flex;
-    justify-content:center;
-    align-items:flex-end;
+    justify-content:flex-end;
+    align-items:center;
+    flex-direction:column;
 
     cursor:pointer;
 
-    perspective:1500px;
+    overflow:hidden;
+    transition:.6s ease;
+
+    animation:floatEnvelope 4s ease-in-out infinite;
+}
+
+@keyframes floatEnvelope{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-10px);
+    }
 
 }
 
-/* ============================
+/* =====================================
    LETTER
-============================ */
+===================================== */
 
 .letter{
 
     position:absolute;
 
-    width:90%;
-
-    bottom:20px;
-
     left:50%;
+    bottom:35px;
 
-    transform:translateX(-50%);
+    width:88%;
 
-    z-index:1;
+    transform:translate(-50%,70%);
 
-    transition:1s ease;
+    opacity:0;
+
+    z-index:2;
+
+    transition:
+        transform .8s ease,
+        opacity .45s ease;
 
 }
 
-/* ============================
+/* =====================================
    PAPER
-============================ */
+===================================== */
 
 .paper{
 
-    background:white;
+    background:#fff;
 
     border-radius:18px;
 
     padding:30px;
 
-    min-height:260px;
-
-    max-height:70vh;
+    box-shadow:0 18px 35px rgba(0,0,0,.25);
 
     overflow-y:auto;
 
-    box-shadow:0 20px 40px rgba(0,0,0,.25);
+    max-height:68vh;
 
 }
+
+/* Typography */
 
 .paper h1{
 
     text-align:center;
 
     color:#ff2d75;
-
-    font-family:'Dancing Script',cursive;
 
     font-size:42px;
 
@@ -217,23 +93,19 @@ body{
 
 .paper h2{
 
-    margin-top:25px;
-
     text-align:center;
 
     color:#ff2d75;
 
-    font-family:'Dancing Script',cursive;
-
-    font-size:34px;
+    margin-top:20px;
 
 }
 
 .paper p{
 
-    line-height:1.8;
-
     color:#555;
+
+    line-height:1.8;
 
     margin-bottom:15px;
 
@@ -241,187 +113,171 @@ body{
 
 }
 
-/* ============================
+/* =====================================
    ENVELOPE
-============================ */
+===================================== */
 
 .envelope{
 
-    position:absolute;
-
-    bottom:0;
+    position:relative;
 
     width:100%;
 
-    height:250px;
-
-    z-index:5;
-
-}
-
-/* BACK */
-
-.back{
-
-    position:absolute;
-
-    inset:0;
-
-    background:#ff94b7;
-
-    border-radius:12px;
-
-}
-
-/* LEFT */
-
-.left{
-
-    position:absolute;
-
-    inset:0;
-
-    background:#ff7aa2;
-
-    clip-path:polygon(0 0,50% 50%,0 100%);
-
-}
-
-/* RIGHT */
-
-.right{
-
-    position:absolute;
-
-    inset:0;
-
-    background:#ff6f9b;
-
-    clip-path:polygon(100% 0,50% 50%,100% 100%);
-
-}
-
-/* BOTTOM POCKET */
-
-.bottom{
-
-    position:absolute;
-
-    inset:0;
-
-    background:#ff82aa;
-
-    clip-path:polygon(0 100%,50% 45%,100% 100%);
-
-    z-index:8;
-
-}
-
-/* TOP FLAP */
-
-.flap{
-
-    position:absolute;
-
-    inset:0;
-
-    background:#ffb0cb;
-
-    clip-path:polygon(0 0,50% 58%,100% 0);
-
-    transform-origin:top;
-
-    transition:1s;
+    aspect-ratio:1.55/1;
 
     z-index:10;
 
 }
 
-/* HEART SEAL */
+/* Back */
+
+.back{
+
+    position:absolute;
+    inset:0;
+
+    background:#ff97bb;
+
+    border-radius:12px;
+
+}
+
+/* Left */
+
+.left{
+
+    position:absolute;
+    inset:0;
+
+    background:#ff7ea8;
+
+    clip-path:polygon(0 0,50% 50%,0 100%);
+
+}
+
+/* Right */
+
+.right{
+
+    position:absolute;
+    inset:0;
+
+    background:#ff6a9d;
+
+    clip-path:polygon(100% 0,50% 50%,100% 100%);
+
+}
+
+/* Bottom Pocket */
+
+.bottom{
+
+    position:absolute;
+    inset:0;
+
+    background:#ff84ad;
+
+    clip-path:polygon(0 100%,50% 45%,100% 100%);
+
+    z-index:12;
+
+}
+
+/* Flap */
+
+.flap{
+
+    position:absolute;
+    inset:0;
+
+    background:#f7a5c6;
+
+    clip-path:polygon(0 0,50% 58%,100% 0);
+
+    transform-origin:top;
+
+    transition:.8s ease;
+
+    z-index:15;
+
+}
+
+/* Heart Seal */
 
 .seal{
 
     position:absolute;
 
     left:50%;
-    top:54%;
+    top:52%;
 
     transform:translate(-50%,-50%);
 
-    width:60px;
-    height:60px;
+    width:58px;
+    height:58px;
 
     border-radius:50%;
 
-    background:white;
-
-    color:#ff2d75;
-
-    font-size:28px;
+    background:#fff;
 
     display:flex;
     justify-content:center;
     align-items:center;
 
-    box-shadow:0 5px 15px rgba(0,0,0,.2);
+    color:#ff2d75;
 
-    animation:beat 1s infinite;
+    font-size:28px;
+
+    box-shadow:0 6px 16px rgba(0,0,0,.2);
 
     z-index:20;
 
-}
-
-@keyframes beat{
-
-0%,100%{
-
-    transform:translate(-50%,-50%) scale(1);
-
-}
-
-50%{
-
-    transform:translate(-50%,-50%) scale(1.15);
-
-}
+    transition:.4s;
 
 }
 
 /* =====================================
-   OPEN ENVELOPE ANIMATION
+   OPEN
 ===================================== */
 
+#open:checked + .wrapper .card{
+
+    overflow:visible;
+
+}
+
 #open:checked + .wrapper .card .flap{
+
     transform:rotateX(180deg);
-    z-index:1;
+
 }
 
 #open:checked + .wrapper .card .seal{
+
     opacity:0;
-    transition:.3s;
+    transform:translate(-50%,-50%) scale(.4);
+
 }
-
-/* Move the whole envelope behind the letter */
-
-#open:checked + .wrapper .card .envelope{
-    z-index:1;
-}
-
-/* Pull the letter completely out */
 
 #open:checked + .wrapper .card .letter{
 
-    transform:
-        translateX(-50%)
-        translateY(-220px);
+    transform:translate(-50%,-18%);
 
-    z-index:50;
+    opacity:1;
+
+    z-index:30;
 
 }
 
-/* Hover support for desktop */
+/* Desktop Hover */
 
 @media (hover:hover){
+
+.card:hover{
+
+    overflow:visible;
+
+}
 
 .card:hover .flap{
 
@@ -433,84 +289,24 @@ body{
 
     opacity:0;
 
+    transform:translate(-50%,-50%) scale(.4);
+
 }
 
 .card:hover .letter{
 
-    transform:
-        translateX(-50%)
-        translateY(-220px);
+    transform:translate(-50%,-18%);
 
-    z-index:50;
+    opacity:1;
 
-}
-
-}
-
-/* =====================================
-   FLOATING ENVELOPE
-===================================== */
-
-.card{
-
-    animation:floatEnvelope 4s ease-in-out infinite;
-
-}
-
-@keyframes floatEnvelope{
-
-0%,100%{
-
-    transform:translateY(0);
-
-}
-
-50%{
-
-    transform:translateY(-10px);
+    z-index:30;
 
 }
 
 }
 
 /* =====================================
-   LETTER APPEAR EFFECT
-===================================== */
-
-.paper{
-
-    transform:scale(.95);
-
-    transition:
-        transform .8s ease,
-        box-shadow .8s ease;
-
-}
-
-#open:checked + .wrapper .card .paper{
-
-    transform:scale(1);
-
-    box-shadow:
-        0 25px 50px rgba(0,0,0,.30);
-
-}
-
-@media (hover:hover){
-
-.card:hover .paper{
-
-    transform:scale(1);
-
-    box-shadow:
-        0 25px 50px rgba(0,0,0,.30);
-
-}
-
-}
-
-/* =====================================
-   MOBILE
+   RESPONSIVE
 ===================================== */
 
 @media(max-width:768px){
@@ -518,21 +314,16 @@ body{
 .card{
 
     width:95vw;
-    height:300px;
 
-}
-
-.envelope{
-
-    height:220px;
+    min-height:320px;
 
 }
 
 .paper{
 
-    min-height:220px;
-
     padding:22px;
+
+    max-height:60vh;
 
 }
 
@@ -554,34 +345,25 @@ body{
 
 }
 
-/* Smaller slide on phones */
+.letter{
+
+    width:90%;
+
+}
 
 #open:checked + .wrapper .card .letter{
 
-    transform:
-        translateX(-50%)
-        translateY(-180px);
+    transform:translate(-50%,-12%);
 
 }
 
 }
-
-/* =====================================
-   SMALL PHONES
-===================================== */
 
 @media(max-width:480px){
 
 .card{
 
-    width:96vw;
-    height:270px;
-
-}
-
-.envelope{
-
-    height:200px;
+    min-height:290px;
 
 }
 
@@ -599,21 +381,13 @@ body{
 
 .paper h2{
 
-    font-size:25px;
+    font-size:24px;
 
 }
 
 .paper p{
 
     font-size:14px;
-
-}
-
-#open:checked + .wrapper .card .letter{
-
-    transform:
-        translateX(-50%)
-        translateY(-150px);
 
 }
 
