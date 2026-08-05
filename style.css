@@ -496,3 +496,181 @@ body{
     }
 
 }
+/* ==========================================================
+   PART 3
+   OPENING ANIMATION
+========================================================== */
+
+/* Smooth transitions */
+
+.letter,
+.top-flap,
+.seal{
+
+    transition:
+        transform .9s cubic-bezier(.25,.8,.25,1),
+        opacity .6s ease,
+        visibility .6s ease;
+
+}
+
+/* Envelope gently floats */
+
+.love-card{
+
+    animation:
+        floating 5s ease-in-out infinite;
+
+}
+
+@keyframes floating{
+
+    0%,100%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(-12px);
+
+    }
+
+}
+
+/* ===========================
+   OPEN STATE
+=========================== */
+
+.love-card.open .top-flap{
+
+    transform:
+        rotateX(180deg);
+
+    z-index:0;
+
+}
+
+/* Wax seal disappears */
+
+.love-card.open .seal{
+
+    opacity:0;
+
+    transform:
+        translate(-50%,-15%)
+        scale(.2);
+
+    visibility:hidden;
+
+}
+
+/* Letter comes out */
+
+.love-card.open .letter{
+
+    transform:
+        translateX(-50%)
+        translateY(-65%);
+
+    z-index:30;
+
+}
+
+/* Optional paper lift */
+
+.love-card.open .paper{
+
+    animation:
+        paperPop .8s ease;
+
+}
+
+@keyframes paperPop{
+
+    0%{
+
+        transform:scale(.96);
+
+    }
+
+    60%{
+
+        transform:scale(1.02);
+
+    }
+
+    100%{
+
+        transform:scale(1);
+
+    }
+
+}
+
+/* Button animation */
+
+#toggleBtn{
+
+    transition:
+        transform .3s,
+        box-shadow .3s;
+
+}
+
+#toggleBtn:hover{
+
+    transform:
+        translateY(-3px)
+        scale(1.03);
+
+}
+
+/* Envelope shadow */
+
+.envelope{
+
+    transition:
+        transform .5s ease,
+        filter .5s ease;
+
+}
+
+.love-card.open .envelope{
+
+    filter:
+        drop-shadow(0 25px 45px rgba(0,0,0,.28));
+
+}
+
+/* Small bounce after opening */
+
+.love-card.open{
+
+    animation:
+        bounceOpen .8s ease;
+
+}
+
+@keyframes bounceOpen{
+
+    0%{
+
+        transform:scale(.98);
+
+    }
+
+    60%{
+
+        transform:scale(1.02);
+
+    }
+
+    100%{
+
+        transform:scale(1);
+
+    }
+
+}
