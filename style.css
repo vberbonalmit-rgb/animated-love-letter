@@ -1,33 +1,75 @@
+/* ==========================================
+   RESET
+========================================== */
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
 }
 
+:root{
+
+    --bg1:#ff6fa5;
+    --bg2:#ff8fb8;
+
+    --envelope:#ff4d73;
+    --flap:#ff6f91;
+
+    --paper:#ffffff;
+
+    --text:#444;
+
+    --shadow:0 18px 40px rgba(0,0,0,.18);
+
+    --radius:18px;
+
+}
+
+/* ==========================================
+   BODY
+========================================== */
+
 body{
+
+    min-height:100vh;
 
     display:flex;
     justify-content:center;
     align-items:center;
 
-    min-height:100vh;
-
     overflow:hidden;
 
-    background:linear-gradient(135deg,#ff758c,#ff7eb3,#ffb199);
+    font-family:
+    "Segoe UI",
+    sans-serif;
 
-    font-family:Arial,Helvetica,sans-serif;
+    background:
+    linear-gradient(
+        135deg,
+        var(--bg1),
+        var(--bg2)
+    );
+
+    padding:30px;
 
 }
 
-/* Floating Hearts */
+/* ==========================================
+   HEARTS
+========================================== */
 
-.hearts{
+#hearts{
 
-    position:absolute;
-    width:100%;
-    height:100%;
+    position:fixed;
+
+    inset:0;
+
     overflow:hidden;
+
+    pointer-events:none;
+
+    z-index:0;
 
 }
 
@@ -37,9 +79,9 @@ body{
 
     color:white;
 
-    animation:float linear infinite;
+    opacity:.75;
 
-    opacity:.8;
+    animation:float linear forwards;
 
 }
 
@@ -47,224 +89,337 @@ body{
 
     from{
 
-        transform:translateY(100vh) scale(.5);
+        transform:
+        translateY(100vh)
+        scale(.5);
 
     }
 
     to{
 
-        transform:translateY(-100px) scale(1.5);
+        transform:
+        translateY(-120px)
+        scale(1.4);
 
     }
 
 }
 
+/* ==========================================
+   CONTAINER
+========================================== */
 
-/* Card */
+.container{
+
+    position:relative;
+
+    width:min(520px,95vw);
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    z-index:2;
+
+}
+
+/* ==========================================
+   CARD
+========================================== */
 
 .card{
 
     position:relative;
 
-    width:360px;
-    height:250px;
+    width:100%;
 
     display:flex;
+
     justify-content:center;
-    align-items:center;
-    flex-direction:column;
+
+    align-items:flex-end;
 
     cursor:pointer;
 
-    z-index:5;
+    animation:
+    floating 5s ease-in-out infinite;
 
 }
 
+@keyframes floating{
 
-/* Envelope */
+    0%,100%{
+
+        transform:
+        translateY(0);
+
+    }
+
+    50%{
+
+        transform:
+        translateY(-12px);
+
+    }
+
+}
+
+/* ==========================================
+   ENVELOPE
+========================================== */
 
 .envelope{
 
     position:relative;
 
-    width:320px;
-    height:200px;
+    width:100%;
 
-    background:#ff4d6d;
+    display:flex;
 
-    border-radius:0 0 12px 12px;
+    justify-content:center;
 
-    box-shadow:0 20px 40px rgba(0,0,0,.3);
+    align-items:flex-end;
+
+    padding:22px;
 
 }
 
-/* Top flap */
+/* ==========================================
+   BODY
+========================================== */
 
-.top{
+.body{
 
     position:absolute;
 
+    inset:auto 0 0 0;
+
     width:100%;
-    height:100%;
 
-    background:#ff758f;
+    min-height:240px;
 
-    clip-path:polygon(0 0,50% 60%,100% 0);
+    background:var(--envelope);
+
+    border-radius:
+    0
+    0
+    var(--radius)
+    var(--radius);
+
+    box-shadow:var(--shadow);
+
+}
+
+/* ==========================================
+   FLAP
+========================================== */
+
+.flap{
+
+    position:absolute;
+
+    top:0;
+    left:0;
+
+    width:100%;
+    height:180px;
+
+    background:var(--flap);
+
+    clip-path:
+    polygon(
+    0 0,
+    100% 0,
+    50% 100%
+    );
 
     transform-origin:top;
 
-    transition:.8s;
+    transition:
+    transform .9s ease,
+    opacity .8s ease;
 
-    z-index:5;
+    z-index:20;
 
 }
 
-
-/* Letter */
+/* ==========================================
+   LETTER
+========================================== */
 
 .letter{
 
-    position:absolute;
+    position:relative;
 
-    left:10px;
-    right:10px;
-    bottom:10px;
+    width:90%;
 
-    height:180px;
+    background:var(--paper);
 
-    background:white;
+    border-radius:16px;
 
-    border-radius:10px;
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.15);
 
-    padding:18px;
+    overflow:hidden;
+
+    transition:
+    transform 1s ease;
+
+    transform:
+    translateY(110px);
+
+    z-index:10;
+
+}
+
+/* ==========================================
+   PAPER
+========================================== */
+
+.paper{
+
+    padding:35px;
+
+}
+
+.paper h1{
+
+    color:#ff4d73;
 
     text-align:center;
 
-    transform:translateY(70px);
+    margin-bottom:20px;
 
-    transition:1s;
-
-    overflow:auto;
-
-    box-shadow:0 5px 15px rgba(0,0,0,.2);
-
-}
-
-.letter h2{
-
-    color:#ff4d6d;
-
-    margin-bottom:10px;
+    font-size:
+    clamp(
+    28px,
+    4vw,
+    40px
+    );
 
 }
 
-.letter p{
+.paper h2{
 
-    font-size:14px;
+    color:#ff4d73;
 
-    color:#444;
+    margin-top:25px;
 
-    margin-bottom:10px;
-
-    line-height:1.5;
+    text-align:center;
 
 }
 
-.letter h3{
+.paper p{
 
-    color:#e91e63;
+    color:var(--text);
+
+    line-height:1.8;
+
+    font-size:
+    clamp(
+    16px,
+    2vw,
+    18px
+    );
+
+    margin-bottom:16px;
+
+    text-align:center;
 
 }
 
-
-/* Open */
-
-.card.open .top{
-
-    transform:rotateX(180deg);
-
-}
+/* ==========================================
+   OPEN
+========================================== */
 
 .card.open .letter{
 
-    transform:translateY(-120px);
+    transform:
+    translateY(-120px);
 
 }
 
+.card.open .flap{
 
-/* Text */
+    transform:
+    rotateX(180deg)
+    translateY(-100%);
 
-.click{
+    opacity:0;
 
-    color:white;
-
-    margin-top:20px;
-
-    font-size:20px;
-
-    animation:pulse 1.5s infinite;
+    pointer-events:none;
 
 }
 
-@keyframes pulse{
+/* ==========================================
+   BUTTON
+========================================== */
 
-    50%{
+button{
 
-        transform:scale(1.1);
+    margin-top:45px;
 
-    }
+    padding:
+    14px
+    34px;
 
-}
+    border:none;
 
-/* Floating Card */
+    border-radius:50px;
 
-.card{
+    background:white;
 
-    animation:floatCard 4s ease-in-out infinite;
-
-}
-
-@keyframes floatCard{
-
-    0%,100%{
-
-        transform:translateY(0);
-
-    }
-
-    50%{
-
-        transform:translateY(-15px);
-
-    }
-
-}
-
-/* Responsive */
-
-@media(max-width:500px){
-
-.card{
-
-    width:95%;
-
-}
-
-.envelope{
-
-    width:95%;
-
-}
-
-.letter{
-
-    height:170px;
-
-}
-
-.click{
+    color:#ff4d73;
 
     font-size:18px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    box-shadow:
+    0 8px 20px rgba(0,0,0,.15);
+
+}
+
+button:hover{
+
+    transform:
+    scale(1.05);
+
+}
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media(max-width:768px){
+
+.paper{
+
+    padding:24px;
+
+}
+
+.body{
+
+    min-height:190px;
+
+}
+
+.flap{
+
+    height:140px;
+
+}
+
+button{
+
+    width:100%;
 
 }
 
