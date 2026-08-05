@@ -829,7 +829,66 @@ body{
             rgba(255,255,255,.22),
             transparent 70%
         );
+/* ==========================================
+   PART 6
+   TYPEWRITER
+========================================== */
 
+.type{
+
+    opacity:0;
+
+    white-space:pre-wrap;
+
+    overflow:hidden;
+
+    min-height:28px;
+
+    margin-bottom:18px;
+
+}
+
+.signature{
+
+    opacity:0;
+
+    transition:opacity .8s ease;
+
+    font-size:1.3rem;
+
+    color:#ff4d73;
+
+    font-weight:bold;
+
+}
+
+/* Cursor */
+
+.cursor{
+
+    display:inline-block;
+
+    width:2px;
+
+    height:1em;
+
+    background:#ff4d73;
+
+    margin-left:3px;
+
+    animation:blink .7s infinite;
+
+}
+
+@keyframes blink{
+
+    50%{
+
+        opacity:0;
+
+    }
+
+}
     filter:blur(18px);
 
     z-index:-1;
