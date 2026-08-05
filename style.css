@@ -1,393 +1,270 @@
-/* =====================================
-   CARD
-===================================== */
-
-.card{
-    position:relative;
-    width:min(460px,92vw);
-    min-height:360px;
-
-    display:flex;
-    justify-content:flex-end;
-    align-items:center;
-    flex-direction:column;
-
-    cursor:pointer;
-
-    overflow:hidden;
-    transition:.6s ease;
-
-    animation:floatEnvelope 4s ease-in-out infinite;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-@keyframes floatEnvelope{
-
-    0%,100%{
-        transform:translateY(0);
-    }
-
-    50%{
-        transform:translateY(-10px);
-    }
-
-}
-
-/* =====================================
-   LETTER
-===================================== */
-
-.letter{
-
-    position:absolute;
-
-    left:50%;
-    bottom:35px;
-
-    width:88%;
-
-    transform:translate(-50%,70%);
-
-    opacity:0;
-
-    z-index:2;
-
-    transition:
-        transform .8s ease,
-        opacity .45s ease;
-
-}
-
-/* =====================================
-   PAPER
-===================================== */
-
-.paper{
-
-    background:#fff;
-
-    border-radius:18px;
-
-    padding:30px;
-
-    box-shadow:0 18px 35px rgba(0,0,0,.25);
-
-    overflow-y:auto;
-
-    max-height:68vh;
-
-}
-
-/* Typography */
-
-.paper h1{
-
-    text-align:center;
-
-    color:#ff2d75;
-
-    font-size:42px;
-
-    margin-bottom:20px;
-
-}
-
-.paper h2{
-
-    text-align:center;
-
-    color:#ff2d75;
-
-    margin-top:20px;
-
-}
-
-.paper p{
-
-    color:#555;
-
-    line-height:1.8;
-
-    margin-bottom:15px;
-
-    text-align:center;
-
-}
-
-/* =====================================
-   ENVELOPE
-===================================== */
-
-.envelope{
-
-    position:relative;
-
-    width:100%;
-
-    aspect-ratio:1.55/1;
-
-    z-index:10;
-
-}
-
-/* Back */
-
-.back{
-
-    position:absolute;
-    inset:0;
-
-    background:#ff97bb;
-
-    border-radius:12px;
-
-}
-
-/* Left */
-
-.left{
-
-    position:absolute;
-    inset:0;
-
-    background:#ff7ea8;
-
-    clip-path:polygon(0 0,50% 50%,0 100%);
-
-}
-
-/* Right */
-
-.right{
-
-    position:absolute;
-    inset:0;
-
-    background:#ff6a9d;
-
-    clip-path:polygon(100% 0,50% 50%,100% 100%);
-
-}
-
-/* Bottom Pocket */
-
-.bottom{
-
-    position:absolute;
-    inset:0;
-
-    background:#ff84ad;
-
-    clip-path:polygon(0 100%,50% 45%,100% 100%);
-
-    z-index:12;
-
-}
-
-/* Flap */
-
-.flap{
-
-    position:absolute;
-    inset:0;
-
-    background:#f7a5c6;
-
-    clip-path:polygon(0 0,50% 58%,100% 0);
-
-    transform-origin:top;
-
-    transition:.8s ease;
-
-    z-index:15;
-
-}
-
-/* Heart Seal */
-
-.seal{
-
-    position:absolute;
-
-    left:50%;
-    top:52%;
-
-    transform:translate(-50%,-50%);
-
-    width:58px;
-    height:58px;
-
-    border-radius:50%;
-
-    background:#fff;
+body{
 
     display:flex;
     justify-content:center;
     align-items:center;
 
-    color:#ff2d75;
+    min-height:100vh;
 
-    font-size:28px;
+    overflow:hidden;
 
-    box-shadow:0 6px 16px rgba(0,0,0,.2);
+    background:linear-gradient(135deg,#ff758c,#ff7eb3,#ffb199);
 
-    z-index:20;
-
-    transition:.4s;
+    font-family:Arial,Helvetica,sans-serif;
 
 }
 
-/* =====================================
-   OPEN
-===================================== */
+/* Floating Hearts */
 
-#open:checked + .wrapper .card{
+.hearts{
 
-    overflow:visible;
-
-}
-
-#open:checked + .wrapper .card .flap{
-
-    transform:rotateX(180deg);
+    position:absolute;
+    width:100%;
+    height:100%;
+    overflow:hidden;
 
 }
 
-#open:checked + .wrapper .card .seal{
+.heart{
 
-    opacity:0;
-    transform:translate(-50%,-50%) scale(.4);
+    position:absolute;
 
-}
+    color:white;
 
-#open:checked + .wrapper .card .letter{
+    animation:float linear infinite;
 
-    transform:translate(-50%,-18%);
-
-    opacity:1;
-
-    z-index:30;
+    opacity:.8;
 
 }
 
-/* Desktop Hover */
+@keyframes float{
 
-@media (hover:hover){
+    from{
 
-.card:hover{
+        transform:translateY(100vh) scale(.5);
 
-    overflow:visible;
+    }
 
-}
+    to{
 
-.card:hover .flap{
+        transform:translateY(-100px) scale(1.5);
 
-    transform:rotateX(180deg);
-
-}
-
-.card:hover .seal{
-
-    opacity:0;
-
-    transform:translate(-50%,-50%) scale(.4);
+    }
 
 }
 
-.card:hover .letter{
 
-    transform:translate(-50%,-18%);
-
-    opacity:1;
-
-    z-index:30;
-
-}
-
-}
-
-/* =====================================
-   RESPONSIVE
-===================================== */
-
-@media(max-width:768px){
+/* Card */
 
 .card{
 
-    width:95vw;
+    position:relative;
 
-    min-height:320px;
+    width:360px;
+    height:250px;
 
-}
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
 
-.paper{
+    cursor:pointer;
 
-    padding:22px;
-
-    max-height:60vh;
-
-}
-
-.paper h1{
-
-    font-size:34px;
+    z-index:5;
 
 }
 
-.paper h2{
 
-    font-size:28px;
+/* Envelope */
+
+.envelope{
+
+    position:relative;
+
+    width:320px;
+    height:200px;
+
+    background:#ff4d6d;
+
+    border-radius:0 0 12px 12px;
+
+    box-shadow:0 20px 40px rgba(0,0,0,.3);
 
 }
 
-.paper p{
+/* Top flap */
 
-    font-size:15px;
+.top{
+
+    position:absolute;
+
+    width:100%;
+    height:100%;
+
+    background:#ff758f;
+
+    clip-path:polygon(0 0,50% 60%,100% 0);
+
+    transform-origin:top;
+
+    transition:.8s;
+
+    z-index:5;
+
+}
+
+
+/* Letter */
+
+.letter{
+
+    position:absolute;
+
+    left:10px;
+    right:10px;
+    bottom:10px;
+
+    height:180px;
+
+    background:white;
+
+    border-radius:10px;
+
+    padding:18px;
+
+    text-align:center;
+
+    transform:translateY(70px);
+
+    transition:1s;
+
+    overflow:auto;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.2);
+
+}
+
+.letter h2{
+
+    color:#ff4d6d;
+
+    margin-bottom:10px;
+
+}
+
+.letter p{
+
+    font-size:14px;
+
+    color:#444;
+
+    margin-bottom:10px;
+
+    line-height:1.5;
+
+}
+
+.letter h3{
+
+    color:#e91e63;
+
+}
+
+
+/* Open */
+
+.card.open .top{
+
+    transform:rotateX(180deg);
+
+}
+
+.card.open .letter{
+
+    transform:translateY(-120px);
+
+}
+
+
+/* Text */
+
+.click{
+
+    color:white;
+
+    margin-top:20px;
+
+    font-size:20px;
+
+    animation:pulse 1.5s infinite;
+
+}
+
+@keyframes pulse{
+
+    50%{
+
+        transform:scale(1.1);
+
+    }
+
+}
+
+/* Floating Card */
+
+.card{
+
+    animation:floatCard 4s ease-in-out infinite;
+
+}
+
+@keyframes floatCard{
+
+    0%,100%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(-15px);
+
+    }
+
+}
+
+/* Responsive */
+
+@media(max-width:500px){
+
+.card{
+
+    width:95%;
+
+}
+
+.envelope{
+
+    width:95%;
 
 }
 
 .letter{
 
-    width:90%;
+    height:170px;
 
 }
 
-#open:checked + .wrapper .card .letter{
+.click{
 
-    transform:translate(-50%,-12%);
-
-}
-
-}
-
-@media(max-width:480px){
-
-.card{
-
-    min-height:290px;
-
-}
-
-.paper{
-
-    padding:18px;
-
-}
-
-.paper h1{
-
-    font-size:30px;
-
-}
-
-.paper h2{
-
-    font-size:24px;
-
-}
-
-.paper p{
-
-    font-size:14px;
+    font-size:18px;
 
 }
 
