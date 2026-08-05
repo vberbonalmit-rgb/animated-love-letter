@@ -546,7 +546,12 @@ body{
 .love-card.open .top-flap{
 
     transform:
-        rotateX(180deg);
+        rotateX(180deg)
+        translateY(-8px);
+
+    opacity:0;
+
+    pointer-events:none;
 
     z-index:0;
 
@@ -569,10 +574,6 @@ body{
 /* Letter comes out */
 
 .love-card.open .letter{
-
-    transform:
-        translateX(-50%)
-        translateY(-65%);
 
     z-index:30;
 
@@ -672,5 +673,165 @@ body{
         transform:scale(1);
 
     }
+
+}
+/* ==========================================================
+   PART 5
+   PARTICLES
+========================================================== */
+
+.heart{
+
+    position:absolute;
+
+    color:white;
+
+    user-select:none;
+
+    pointer-events:none;
+
+    animation:heartFloat linear forwards;
+
+    text-shadow:
+        0 0 10px rgba(255,255,255,.8);
+
+}
+
+@keyframes heartFloat{
+
+    from{
+
+        transform:
+            translateY(100vh)
+            scale(.4);
+
+        opacity:0;
+
+    }
+
+    20%{
+
+        opacity:.9;
+
+    }
+
+    to{
+
+        transform:
+            translateY(-120px)
+            rotate(360deg)
+            scale(1.4);
+
+        opacity:0;
+
+    }
+
+}
+
+/* =============================== */
+
+.sparkle{
+
+    position:absolute;
+
+    width:4px;
+    height:4px;
+
+    border-radius:50%;
+
+    background:white;
+
+    box-shadow:
+        0 0 12px white,
+        0 0 20px white;
+
+    animation:
+        sparkle 2s linear forwards;
+
+}
+
+@keyframes sparkle{
+
+    from{
+
+        transform:scale(0);
+
+        opacity:1;
+
+    }
+
+    to{
+
+        transform:scale(2);
+
+        opacity:0;
+
+    }
+
+}
+
+/* =============================== */
+
+.burst-heart{
+
+    position:absolute;
+
+    color:#ff2e63;
+
+    font-size:26px;
+
+    pointer-events:none;
+
+    animation:
+        burst .9s ease-out forwards;
+
+}
+
+@keyframes burst{
+
+    from{
+
+        transform:
+            translate(0,0)
+            scale(.4);
+
+        opacity:1;
+
+    }
+
+    to{
+
+        transform:
+            translate(var(--x),var(--y))
+            scale(1.6);
+
+        opacity:0;
+
+    }
+
+}
+
+/* =============================== */
+
+.envelope::after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:-18px;
+
+    border-radius:25px;
+
+    background:
+
+        radial-gradient(
+            rgba(255,255,255,.22),
+            transparent 70%
+        );
+
+    filter:blur(18px);
+
+    z-index:-1;
 
 }
