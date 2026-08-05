@@ -8,7 +8,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
-    <title>Animated Love Letter</title>
+    <title>Love Letter</title>
 
     <link rel="stylesheet" href="style.css">
 
@@ -19,56 +19,100 @@
     <!-- Floating Hearts -->
     <div id="hearts"></div>
 
+    <!-- Sparkles -->
+    <div id="sparkles"></div>
+
     <!-- Main Container -->
-    <main class="container">
+    <main class="scene">
 
-        <!-- Envelope Card -->
-        <div class="card" id="card">
+        <div class="love-card" id="loveCard">
 
-            <!-- Envelope -->
-            <div class="envelope">
+            <!-- ==========================
+                 LETTER
+            =========================== -->
 
-                <!-- Top Flap -->
-                <div class="flap" id="flap"></div>
+            <div class="letter" id="letter">
 
-                <!-- Envelope Body -->
-                <div class="body"></div>
+                <div class="paper">
 
-                <!-- Letter -->
-                <div class="letter" id="letter">
+                    <div class="paper-top"></div>
 
-                    <div class="paper">
+                    <div class="paper-content">
 
-                        <h1>❤️ My Love ❤️</h1>
+                        <h1 class="title">
+                            ❤️ My Love ❤️
+                        </h1>
 
-                        <p>
-                            Every moment with you feels like the most beautiful
-                            dream. Your smile brightens my darkest days and
-                            your love fills my heart with happiness.
-                        </p>
+                        <div id="typewriter">
 
-                        <p>
-                            Thank you for being my inspiration,
-                            my happiness,
-                            my best friend,
-                            and my forever.
-                        </p>
+                            <p>
+                                Every moment with you feels like the most
+                                beautiful dream.
+                            </p>
 
-                        <p>
-                            Every day with you becomes another beautiful memory
-                            that I will treasure forever.
-                        </p>
+                            <p>
+                                Your smile brightens my darkest days,
+                                and your love fills my heart with happiness.
+                            </p>
 
-                        <p>
-                            I promise to stand beside you,
-                            support you,
-                            laugh with you,
-                            and love you through every chapter of life.
-                        </p>
+                            <p>
+                                Thank you for being my inspiration,
+                                my peace,
+                                my happiness,
+                                and my forever.
+                            </p>
 
-                        <h2>Forever Yours ❤️</h2>
+                            <p>
+                                I promise to love you today,
+                                tomorrow,
+                                and every day after that.
+                            </p>
+
+                            <p class="signature">
+
+                                Forever Yours ❤️
+
+                            </p>
+
+                        </div>
 
                     </div>
+
+                </div>
+
+            </div>
+
+            <!-- ==========================
+                 ENVELOPE
+            =========================== -->
+
+            <div class="envelope">
+
+                <!-- Back Panel -->
+
+                <div class="back"></div>
+
+                <!-- Left Fold -->
+
+                <div class="left-fold"></div>
+
+                <!-- Right Fold -->
+
+                <div class="right-fold"></div>
+
+                <!-- Bottom Fold -->
+
+                <div class="bottom-fold"></div>
+
+                <!-- Top Flap -->
+
+                <div class="top-flap" id="topFlap"></div>
+
+                <!-- Wax Seal -->
+
+                <div class="seal" id="seal">
+
+                    ❤️
 
                 </div>
 
@@ -78,9 +122,9 @@
 
         <!-- Button -->
 
-        <button id="openBtn">
+        <button id="toggleBtn">
 
-            💌 Open My Letter 💌
+            💌 Open Letter 💌
 
         </button>
 
