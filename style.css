@@ -1,6 +1,6 @@
-/* ==========================================
+/* ==========================================================
    RESET
-========================================== */
+========================================================== */
 
 *{
     margin:0;
@@ -10,25 +10,26 @@
 
 :root{
 
-    --bg1:#ff6fa5;
-    --bg2:#ff8fb8;
+    --bg1:#ff7aa8;
+    --bg2:#ff9cc2;
 
-    --envelope:#ff4d73;
-    --flap:#ff6f91;
+    --paper:#fffdf9;
 
-    --paper:#ffffff;
+    --envelope:#ff4f73;
+    --envelope-dark:#e63b63;
+    --flap:#ff6d91;
 
     --text:#444;
 
-    --shadow:0 18px 40px rgba(0,0,0,.18);
+    --shadow:0 20px 45px rgba(0,0,0,.20);
 
     --radius:18px;
 
 }
 
-/* ==========================================
+/* ==========================================================
    BODY
-========================================== */
+========================================================== */
 
 body{
 
@@ -38,82 +39,49 @@ body{
     justify-content:center;
     align-items:center;
 
-    overflow:hidden;
-
-    font-family:
-    "Segoe UI",
-    sans-serif;
-
-    background:
-    linear-gradient(
+    background:linear-gradient(
         135deg,
         var(--bg1),
         var(--bg2)
     );
 
+    font-family:
+    "Segoe UI",
+    Arial,
+    sans-serif;
+
+    overflow-x:hidden;
+
     padding:30px;
 
 }
 
-/* ==========================================
+/* ==========================================================
    HEARTS
-========================================== */
+========================================================== */
 
-#hearts{
+#hearts,
+#sparkles{
 
     position:fixed;
 
     inset:0;
 
-    overflow:hidden;
-
     pointer-events:none;
+
+    overflow:hidden;
 
     z-index:0;
 
 }
 
-.heart{
+/* ==========================================================
+   MAIN SCENE
+========================================================== */
 
-    position:absolute;
+.scene{
 
-    color:white;
-
-    opacity:.75;
-
-    animation:float linear forwards;
-
-}
-
-@keyframes float{
-
-    from{
-
-        transform:
-        translateY(100vh)
-        scale(.5);
-
-    }
-
-    to{
-
-        transform:
-        translateY(-120px)
-        scale(1.4);
-
-    }
-
-}
-
-/* ==========================================
-   CONTAINER
-========================================== */
-
-.container{
-
-    position:relative;
-
-    width:min(520px,95vw);
+    width:min(560px,95vw);
 
     display:flex;
 
@@ -121,15 +89,17 @@ body{
 
     align-items:center;
 
-    z-index:2;
+    position:relative;
+
+    z-index:5;
 
 }
 
-/* ==========================================
+/* ==========================================================
    CARD
-========================================== */
+========================================================== */
 
-.card{
+.love-card{
 
     position:relative;
 
@@ -141,34 +111,127 @@ body{
 
     align-items:flex-end;
 
-    cursor:pointer;
-
-    animation:
-    floating 5s ease-in-out infinite;
+    margin-bottom:40px;
 
 }
 
-@keyframes floating{
+/* ==========================================================
+   LETTER
+========================================================== */
 
-    0%,100%{
+.letter{
 
-        transform:
-        translateY(0);
+    position:absolute;
 
-    }
+    width:88%;
 
-    50%{
+    max-width:500px;
 
-        transform:
-        translateY(-12px);
+    left:50%;
 
-    }
+    transform:
+        translateX(-50%)
+        translateY(140px);
+
+    z-index:1;
 
 }
 
-/* ==========================================
+/* ==========================================================
+   PAPER
+========================================================== */
+
+.paper{
+
+    background:var(--paper);
+
+    border-radius:18px;
+
+    box-shadow:var(--shadow);
+
+    overflow:hidden;
+
+}
+
+.paper-top{
+
+    height:10px;
+
+    background:
+    linear-gradient(
+        to right,
+        #ffd7df,
+        #fff,
+        #ffd7df
+    );
+
+}
+
+.paper-content{
+
+    padding:35px;
+
+}
+
+/* ==========================================================
+   TITLE
+========================================================== */
+
+.title{
+
+    text-align:center;
+
+    color:#ff4f73;
+
+    font-size:
+    clamp(
+        2rem,
+        4vw,
+        2.7rem
+    );
+
+    margin-bottom:25px;
+
+}
+
+/* ==========================================================
+   TEXT
+========================================================== */
+
+.paper p{
+
+    font-size:
+    clamp(
+        1rem,
+        2vw,
+        1.15rem
+    );
+
+    color:var(--text);
+
+    line-height:1.9;
+
+    text-align:center;
+
+    margin-bottom:18px;
+
+}
+
+.signature{
+
+    margin-top:30px;
+
+    font-size:1.3rem;
+
+    color:#ff4f73;
+
+    font-weight:bold;
+
+}
+
+/* ==========================================================
    ENVELOPE
-========================================== */
+========================================================== */
 
 .envelope{
 
@@ -176,251 +239,260 @@ body{
 
     width:100%;
 
-    display:flex;
+    aspect-ratio:1.45;
 
-    justify-content:center;
+    max-height:380px;
 
-    align-items:flex-end;
-
-    padding:22px;
+    z-index:5;
 
 }
 
-/* ==========================================
-   BODY
-========================================== */
+/* ==========================================================
+   BACK PANEL
+========================================================== */
 
-.body{
+.back{
 
     position:absolute;
 
-    inset:auto 0 0 0;
-
-    width:100%;
-
-    min-height:240px;
+    inset:0;
 
     background:var(--envelope);
 
-    border-radius:
-    0
-    0
-    var(--radius)
-    var(--radius);
+    border-radius:0 0 18px 18px;
 
     box-shadow:var(--shadow);
 
 }
 
-/* ==========================================
-   FLAP
-========================================== */
+/* ==========================================================
+   LEFT FOLD
+========================================================== */
 
-.flap{
+.left-fold{
 
     position:absolute;
 
-    top:0;
     left:0;
+    bottom:0;
+
+    width:50%;
+    height:100%;
+
+    background:var(--envelope-dark);
+
+    clip-path:polygon(
+        0 0,
+        100% 50%,
+        100% 100%,
+        0 100%
+    );
+
+    z-index:6;
+
+}
+
+/* ==========================================================
+   RIGHT FOLD
+========================================================== */
+
+.right-fold{
+
+    position:absolute;
+
+    right:0;
+    bottom:0;
+
+    width:50%;
+    height:100%;
+
+    background:#ff5f83;
+
+    clip-path:polygon(
+        0 50%,
+        100% 0,
+        100% 100%,
+        0 100%
+    );
+
+    z-index:6;
+
+}
+
+/* ==========================================================
+   BOTTOM FOLD
+========================================================== */
+
+.bottom-fold{
+
+    position:absolute;
+
+    left:0;
+    bottom:0;
 
     width:100%;
-    height:180px;
+    height:65%;
+
+    background:#ff5478;
+
+    clip-path:polygon(
+        0 100%,
+        50% 0,
+        100% 100%
+    );
+
+    z-index:7;
+
+}
+
+/* ==========================================================
+   TOP FLAP
+========================================================== */
+
+.top-flap{
+
+    position:absolute;
+
+    left:0;
+    top:0;
+
+    width:100%;
+    height:56%;
 
     background:var(--flap);
 
-    clip-path:
-    polygon(
-    0 0,
-    100% 0,
-    50% 100%
+    clip-path:polygon(
+        0 0,
+        100% 0,
+        50% 100%
     );
 
-    transform-origin:top;
-
-    transition:
-    transform .9s ease,
-    opacity .8s ease;
+    transform-origin:top center;
 
     z-index:20;
 
 }
 
-/* ==========================================
-   LETTER
-========================================== */
+/* ==========================================================
+   WAX SEAL
+========================================================== */
 
-.letter{
+.seal{
 
-    position:relative;
+    position:absolute;
 
-    width:90%;
+    left:50%;
+    top:50%;
 
-    background:var(--paper);
+    transform:translate(-50%,-15%);
 
-    border-radius:16px;
+    width:70px;
+    height:70px;
+
+    border-radius:50%;
+
+    background:#c3002f;
+
+    color:white;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:30px;
 
     box-shadow:
-    0 10px 30px rgba(0,0,0,.15);
+        0 8px 18px rgba(0,0,0,.25);
 
-    overflow:hidden;
-
-    transition:
-    transform 1s ease;
-
-    transform:
-    translateY(110px);
-
-    z-index:10;
+    z-index:25;
 
 }
 
-/* ==========================================
-   PAPER
-========================================== */
-
-.paper{
-
-    padding:35px;
-
-}
-
-.paper h1{
-
-    color:#ff4d73;
-
-    text-align:center;
-
-    margin-bottom:20px;
-
-    font-size:
-    clamp(
-    28px,
-    4vw,
-    40px
-    );
-
-}
-
-.paper h2{
-
-    color:#ff4d73;
-
-    margin-top:25px;
-
-    text-align:center;
-
-}
-
-.paper p{
-
-    color:var(--text);
-
-    line-height:1.8;
-
-    font-size:
-    clamp(
-    16px,
-    2vw,
-    18px
-    );
-
-    margin-bottom:16px;
-
-    text-align:center;
-
-}
-
-/* ==========================================
-   OPEN
-========================================== */
-
-.card.open .letter{
-
-    transform:
-    translateY(-120px);
-
-}
-
-.card.open .flap{
-
-    transform:
-    rotateX(180deg)
-    translateY(-100%);
-
-    opacity:0;
-
-    pointer-events:none;
-
-}
-
-/* ==========================================
+/* ==========================================================
    BUTTON
-========================================== */
+========================================================== */
 
-button{
-
-    margin-top:45px;
-
-    padding:
-    14px
-    34px;
+#toggleBtn{
 
     border:none;
 
-    border-radius:50px;
+    outline:none;
+
+    cursor:pointer;
+
+    padding:15px 40px;
+
+    border-radius:40px;
 
     background:white;
 
-    color:#ff4d73;
+    color:#ff4f73;
 
     font-size:18px;
 
     font-weight:bold;
 
-    cursor:pointer;
+    box-shadow:var(--shadow);
 
     transition:.3s;
 
-    box-shadow:
-    0 8px 20px rgba(0,0,0,.15);
+}
+
+#toggleBtn:hover{
+
+    transform:translateY(-3px);
 
 }
 
-button:hover{
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
 
-    transform:
-    scale(1.05);
+@media (max-width:768px){
 
-}
+    .paper-content{
 
-/* ==========================================
-   MOBILE
-========================================== */
+        padding:25px;
 
-@media(max-width:768px){
+    }
 
-.paper{
+    .seal{
 
-    padding:24px;
+        width:58px;
+        height:58px;
 
-}
+        font-size:24px;
 
-.body{
+    }
 
-    min-height:190px;
+    #toggleBtn{
 
-}
+        width:100%;
 
-.flap{
-
-    height:140px;
+    }
 
 }
 
-button{
+@media (max-width:480px){
 
-    width:100%;
+    .paper-content{
 
-}
+        padding:20px;
+
+    }
+
+    .title{
+
+        font-size:1.8rem;
+
+    }
+
+    .paper p{
+
+        font-size:.98rem;
+
+    }
 
 }
